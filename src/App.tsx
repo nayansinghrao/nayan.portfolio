@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { CaseStudyModal } from './components/CaseStudyModal';
@@ -185,6 +186,9 @@ export default function App() {
           }}
         />
       )}
+      
+      {/* Vercel Web Analytics */}
+      <Analytics />
     </div>
   );
 }
