@@ -1,91 +1,141 @@
-# Portfolio PDF Integration & Generation
+# Portfolio Content & Data Customization Plan
 
-Generate an editorial, multi-page portfolio PDF showcasing Nayan Singh Rao's curated branding projects, motion reels, AI commercials, and design capabilities, opening directly in a new browser tab with one-click print and download capabilities.
+Structured roadmap and fill-in-the-blank content template to replace all placeholder portfolio data with your verified personal information, brand copy, and professional milestones across the site and PDF exports.
 
----
-
-### User Review & Critical Decisions
+## User Review & Critical Decisions
 
 > [!IMPORTANT]
-> The following user preferences were confirmed during the interactive interview:
-> - **Experience Mode**: Open the styled portfolio PDF directly in a new browser tab (`target="_blank"`), allowing native browser zoom, saving, and printing.
-> - **Document Origin**: Generate a bespoke, high-craft editorial PDF document pre-populated with Nayan's actual showcased projects (Komorebi Botanical, Aura Soundscapes, NeoVerve Studio, Cocona, Seth Dhanraj, Sharpix, metrics, and credentials).
-> - **Placement**: Integrated seamlessly into the top navigation header (`Portfolio PDF` button with icon), the Hero CTA secondary action, and the Work Archive header.
+> Based on your responses, we are updating **all default content at once**, retaining the three flagship concept brand frameworks (**Cocona**, **Seth Dhanraj**, and **Sharpix**) while customizing their descriptive copy, and providing a clean **fill-in-the-blank template** for you to provide your information.
+>
+> Below is the exact data blueprint. Review the plan and fill out the template fields below when approving or in your next response.
+
+- **Confirmed Scope**: Comprehensive single-turn update of personal details, contact endpoints, concept brand copy, case studies, career trajectory, and tool ecosystems.
+- **Brand Strategy**: Retain Cocona, Seth Dhanraj, and Sharpix frameworks, keeping their PDF deck infrastructure intact while updating client briefs, metrics, and narrative copy.
+- **Workflow Format**: Fill-in-the-blank template provided directly in this plan.
 
 ---
 
-### 1. Overview & Core Concept
+## 1. Overview & Core Concept
 
-- **What It Does**: Provides prospective agency leads, founders, and hiring directors with a downloadable, printable, multi-page PDF portfolio document that captures Nayan Singh Rao's full creative credentials, concept brand case studies, color palettes, motion metrics, and contact channels.
-- **Target Audience / Persona**: Creative directors, agency partners, and venture-backed founders looking for a portable offline deck or presentation file to circulate internally during hiring or vendor selection.
-- **Key Value**: Bridges the gap between an interactive web portfolio and a formal agency pitch deck without requiring external third-party file hosting or broken link risks.
-
----
-
-### 2. User Experience & Visual Design
-
-#### Key User Flows
-1. **Discovery & Trigger**:
-   - The visitor clicks **"Portfolio PDF"** in the top navigation bar, the hero section action link, or the Work archive banner.
-2. **New Tab Experience**:
-   - The browser opens a dedicated new tab rendering the formatted editorial PDF portfolio document with a clean toolbar (Print, Download, Close, and Return to Site).
-3. **Multi-Page Editorial Layout**:
-   - **Cover Page**: Minimalist dark and warm parchment editorial cover with the `NR` monogram, typography lockup ("Nayan Singh Rao — Graphic Designer & Creative Director"), location credentials, and season mark ("2025 Selected Works Archive").
-   - **Biography & Core Pillars**: Academic foundation, 6+ years experience summary, and the 3 core pillars (*Branding*, *Reels & Social*, *AI Video Ads*).
-   - **Featured In-Depth Dossiers**: High-resolution imagery, client briefs, and color palette HEX swatches for *Komorebi Botanical*, *Cocona*, *Seth Dhanraj*, and *Sharpix*.
-   - **Production Toolkit & Metrics**: Software stack badges (`Ps`, `Ai`, `Ae`, `Pr`, `Fg`, Generative AI models) and verified performance metrics (48+ deployments, 15M+ views).
-   - **Contact & Rate Card / Booking**: Direct email, WhatsApp link, and booking protocols.
-
-#### Visual Styling & Palette Consistency
-- **Colors**: Conforms strictly to the Warm Editorial Craft palette: `#fbf9f6` canvas, `#111111` typography, `#fd591e` / `#ff5a1f` energetic kinetic orange highlights, and `#efeeeb` structural container layers.
-- **Typography**: Space Grotesk headline scaling paired with clean tabular numbers and Inter body prose.
-- **Print Optimization**: Formatted with CSS `@media print` print-exact dimensions (A4 / US Letter landscape and portrait options) with crisp vector text and zero clipped margins.
+- **What It Does**: Replaces all hardcoded placeholder data in `src/data/portfolioData.ts`, `src/data/brandSlideDecks.ts`, and component labels with your actual professional details, live contact links, custom case study copy, and career achievements.
+- **Target Audience**: Prospective clients, design agencies, creative directors, and founders seeking brand identity, motion design, and generative AI production services.
+- **Key Value**: Instantly transforms the portfolio into an authentic, production-ready showcase representing your real identity, experience, and contact channels.
 
 ---
 
-### 3. Key Product Decisions & Trade-Offs
+## 2. Fill-in-the-Blank Content Template
 
-#### Decision 1: Dedicated Printable Route vs. Static Static Blob vs. Heavy Binary Library
-- **Chosen Approach**: A hybrid high-fidelity printable view route `/portfolio.pdf` (or `#/portfolio-pdf` dedicated viewer) paired with native client-side PDF export via standard browser print engine and HTML canvas/blob export.
-- **Why**: 
-  - Opening a dedicated printable HTML document in a new tab allows pixel-perfect styling with custom web fonts (Space Grotesk & Inter), high-resolution imagery, and vectors that never look pixelated or blurry like basic canvas rasterizers.
-  - Native browser `window.print()` triggers the system's "Save as PDF" dialog instantly with 100% vector typography and clickable hyperlinks intact.
-  - Avoids adding heavy external 2MB+ binaries that could slow down initial page loads.
-- **Alternatives Considered**: Raw binary jsPDF generation (leads to blurry custom web font rendering and rigid manual coordinate calculation).
+You can copy this section, fill in your details, and reply with it:
 
-#### Decision 2: Access Points & Header Contract
-- **Chosen Approach**: Add a clean, single-line text link or icon button in the top navigation header and a secondary pill in the Hero section.
-- **Why**: Retains the strict 3-zone header contract without overcrowding the navigation bar.
+```markdown
+### SECTION A: PERSONAL & CONTACT INFORMATION
+1. Full Name: [e.g., Nayan Singh Rao]
+2. Professional Title / Headline: [e.g., Brand & Motion Designer • Creative AI Director]
+3. Hero Hook Statement: [e.g., Designing high-impact visual identities, kinetic motion reels, and generative AI commercial pipelines for visionary brands.]
+4. Primary Email: [e.g., nayan02062004@gmail.com]
+5. Phone / WhatsApp (with country code): [e.g., +91 98765 43210]
+6. Location & Timezone: [e.g., Rajasthan, India (IST UTC+5:30)]
+7. Availability Status Pill: [e.g., Available for work • Q3/Q4 2025 • 2 Slots Open]
+8. Social & Portfolio URLs:
+   - LinkedIn: [https://linkedin.com/in/...]
+   - Behance / Dribbble: [https://behance.net/...]
+   - Instagram / X (Optional): [...]
+
+### SECTION B: ABOUT ME & PHILOSOPHY
+1. Bio Paragraph: [2-3 sentences about your creative background, trajectory, and passion]
+2. Core Creative Pillars (3 Pillars):
+   - Pillar 1 Title & Description: [e.g., Tactile Craftsmanship — Physical dielines and bespoke finishes]
+   - Pillar 2 Title & Description: [e.g., Algorithmic Velocity — Generative AI diffusion pipelines]
+   - Pillar 3 Title & Description: [e.g., Commercial Impact — Brand systems engineered for conversion]
+3. Education / Degree: [e.g., Bachelor of Design, Visual Communication / Self-taught / Institute name]
+
+### SECTION C: THE 3 CONCEPT BRANDS (TEXT COPY CUSTOMIZATION)
+1. Brand 1: COCONA (Organic Brews & Packaging)
+   - Updated Subtitle / Tagline: [e.g., Regenerative coconut cold-brew beverages & bio-packaging]
+   - Client Brief / Core Story: [Brief 1-2 sentence description]
+   - Key Metric / Highlight: [e.g., 200k+ Units Distributed in Launch Quarter]
+
+2. Brand 2: SETH DHANRAJ (Heritage Luxury Jewelry)
+   - Updated Subtitle / Tagline: [e.g., Royal Marwari goldsmith heritage & bespoke velvet packaging]
+   - Client Brief / Core Story: [Brief 1-2 sentence description]
+   - Key Metric / Highlight: [e.g., Featured in Luxury Connoisseur Archive]
+
+3. Brand 3: SHARPIX (Precision Grooming & Hardware)
+   - Updated Subtitle / Tagline: [e.g., Aerospace-grade titanium grooming instruments]
+   - Client Brief / Core Story: [Brief 1-2 sentence description]
+   - Key Metric / Highlight: [e.g., 4.9★ Average Rating Across 14,000 Reviews]
+
+### SECTION D: CAREER TIMELINE & WORK EXPERIENCE
+(List up to 3-4 roles/milestones)
+Role 1:
+- Period: [e.g., 2023 – Present]
+- Position & Company: [e.g., Senior Brand Designer @ Studio XYZ / Freelance]
+- Location & Type: [e.g., Remote / On-site • Full-time / Retainer]
+- Key Highlights (2-3 bullets): [Impact bullets]
+
+Role 2:
+- Period: [e.g., 2021 – 2023]
+- Position & Company: [e.g., Motion & Visual Designer @ Agency ABC]
+- Key Highlights (2-3 bullets): [Impact bullets]
+
+### SECTION E: TOOLS & SKILLS MATRIX
+1. Primary Software Tools: [e.g., Figma, After Effects, Cinema 4D, Illustrator, Photoshop, Blender]
+2. Generative AI Tools: [e.g., Midjourney v6, Runway Gen-3, ComfyUI, ElevenLabs]
+3. Core Disciplines: [e.g., Brand Identity, Motion Design, Packaging Dielines, 3D Rendering, Social Reels]
+```
 
 ---
 
-### 4. Technical Architecture & Data Strategy
+## 3. Technical Architecture & Data Strategy
 
 ```
 ┌────────────────────────────────────────────────────────┐
-│                   App Navigation                       │
-│  (Header / Hero / Work Screen / Footer Trigger)        │
-└──────────────────────────┬─────────────────────────────┘
-                           │ User clicks "Portfolio PDF"
-                           ▼
-┌────────────────────────────────────────────────────────┐
-│             Opens New Tab: /#/portfolio-pdf             │
-│    (Dedicated Standalone Editorial Printable Document)  │
-├────────────────────────────────────────────────────────┤
-│  ┌───────────────────────┐  ┌───────────────────────┐  │
-│  │     Cover Spread      │  │   Dossiers & Visuals  │  │
-│  │ (NR Monogram & Intro) │  │  (Cocona, Dhanraj, etc)│  │
-│  └───────────────────────┘  └───────────────────────┘  │
-│  ┌───────────────────────┐  ┌───────────────────────┐  │
-│  │   Toolkit & Metrics   │  │   Contact & Booking   │  │
-│  │  (Ps/Ai/Ae & 15M+ imp)│  │ (Email, WhatsApp, IST)│  │
-│  └───────────────────────┘  └───────────────────────┘  │
-│                                                        │
-│  [ Print / Save as PDF ]   [ Direct Download ]         │
+│               Data Architecture & Stores               │
 └────────────────────────────────────────────────────────┘
+                           │
+         ┌─────────────────┴─────────────────┐
+         ▼                                   ▼
+┌───────────────────────────┐     ┌──────────────────────────┐
+│ src/data/portfolioData.ts │     │ src/data/brandSlideDecks │
+│ - PERSONAL_INFO           │     │ - Slide headers & copy   │
+│ - FEATURED_PROJECTS       │     │ - Slide bullet points    │
+│ - CONCEPT_BRANDS_DEEPDIVE │     │ - Dieline spec text      │
+│ - EXPERIENCE_ITEMS        │     └──────────────────────────┘
+│ - TOOL_ECOSYSTEM          │
+└───────────────────────────┘
+         │
+         ├───────────────────────────────────┐
+         ▼                                   ▼
+┌───────────────────────────┐     ┌──────────────────────────┐
+│ Active Screens & Modals   │     │ Static PDF Generation    │
+│ - HomeScreen (Hero/Dock)  │     │ - PortfolioPdfView.tsx   │
+│ - WorkScreen (Dossiers)   │     │ - BrandDeckViewer.tsx    │
+│ - AboutScreen (Bio/Pillar)│     │ - Print & Export modes   │
+│ - ExperienceScreen        │     └──────────────────────────┘
+│ - ContactScreen (Form)    │
+│ - QuickHireModal          │
+└───────────────────────────┘
 ```
 
-#### Component & State Structure:
-- `src/screens/PortfolioPdfView.tsx`: The standalone editorial multi-page document rendered when viewing the PDF route, equipped with an interactive top bar (`Print Document`, `Download PDF`, `Back to Portfolio`).
-- `src/components/Header.tsx`: Added single-line "PDF" document trigger button with clean document icon.
-- `src/screens/HomeScreen.tsx` & `src/screens/WorkScreen.tsx`: Added "Download PDF Portfolio" secondary buttons.
+### Affected Files and Update Pipeline
+
+1. **`src/data/portfolioData.ts`**:
+   - Update constants `FEATURED_PROJECTS`, `CONCEPT_BRANDS_DEEPDIVE`, `EXPERIENCE_ITEMS`, `TOOL_ECOSYSTEM`.
+   - Export structured `PROFILE_DATA` (name, email, phone, location, status, social links) to centralize personal attributes.
+2. **`src/screens/ContactScreen.tsx` & `src/components/QuickHireModal.tsx`**:
+   - Link phone numbers and WhatsApp URLs to your provided number (`wa.me/<your-number>`).
+   - Link email links and default form mailto addresses to your verified email.
+   - Synchronize studio location and timezone clocks.
+3. **`src/components/Header.tsx` & `src/components/Footer.tsx`**:
+   - Update brand wordmark, initials logo, title, and social outbound links.
+4. **`src/screens/PortfolioPdfView.tsx`**:
+   - Synchronize PDF header and footer metadata with your name and credentials for press-ready export.
+
+---
+
+## 4. Verification & Testing Protocol
+
+- **Data Integrity**: Verify that no placeholder emails (`hello@nayansinghrao.design`) or dummy phone numbers remain across any UI or modal.
+- **Link Accuracy**: Validate that WhatsApp deep links (`https://wa.me/...`) and mailto links format phone numbers and emails correctly.
+- **Theme & Dark Mode Preservation**: Ensure newly inserted text copy maintains high-contrast light and dark styling across all screens.
+- **Compilation Check**: Run `compile_applet` and `lint_applet` to confirm strict TypeScript typing and zero compile errors.

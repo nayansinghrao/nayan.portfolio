@@ -1,6 +1,6 @@
 {
-  "summary":  "Implementation plan for integrating an editorial PDF portfolio generator that opens in a new tab with print/download functionality across the navigation header, hero, and archive sections.",
-  "updatedAt":  "2026-10-09T16:34:21.692004335Z",
+  "summary":  "Complete data architecture and fill-in-the-blank template for updating all default portfolio data (Bio, Contact info, Concept Brands text copy, Case Studies, Experience timeline, and Skills).",
+  "updatedAt":  "2026-10-10T08:12:16.477434144Z",
   "requestFeedback":  true,
   "userFacing":  true
 }

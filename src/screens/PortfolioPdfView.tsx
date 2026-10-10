@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   CONCEPT_BRANDS_DEEPDIVE,
   FEATURED_PROJECTS,
-  TOOL_ECOSYSTEM,
+  PROFILE_DATA,
 } from '../data/portfolioData';
 import {
   BrandPdfRecord,
@@ -19,6 +19,7 @@ export const PortfolioPdfView: React.FC<PortfolioPdfViewProps> = ({ onBack }) =>
   const [brandPdfs, setBrandPdfs] = useState<Record<string, BrandPdfRecord>>({});
 
   useEffect(() => {
+    document.title = 'Nayan Singh Rao | Graphic Designer';
     getAllBrandPdfs().then(setBrandPdfs);
   }, []);
 
@@ -121,7 +122,7 @@ export const PortfolioPdfView: React.FC<PortfolioPdfViewProps> = ({ onBack }) =>
                   NAYAN SINGH RAO
                 </span>
                 <span className="font-display text-[11px] font-semibold uppercase tracking-wider text-[#5f6368]">
-                  GRAPHIC DESIGNER & CREATIVE DIRECTOR
+                  GRAPHIC DESIGNER
                 </span>
               </div>
             </div>
@@ -141,7 +142,7 @@ export const PortfolioPdfView: React.FC<PortfolioPdfViewProps> = ({ onBack }) =>
             <div className="inline-flex items-center gap-2 bg-[#efeeeb] px-4 py-1.5 rounded-full w-fit border border-[#e5e2dc]">
               <span className="w-2 h-2 rounded-full bg-[#fd591e]"></span>
               <span className="font-display text-xs uppercase tracking-wider text-[#1b1c1a] font-bold">
-                VISUAL IDENTITY • REELS • GENERATIVE AI
+                VISUAL IDENTITY • REELS • AI VIDEO ADS
               </span>
             </div>
 
@@ -150,33 +151,25 @@ export const PortfolioPdfView: React.FC<PortfolioPdfViewProps> = ({ onBack }) =>
             </h1>
 
             <p className="font-sans text-xl text-[#5f6368] max-w-2xl leading-relaxed">
-              A comprehensive showcase of brand identity architectures, tactile retail packaging systems, viral short-form motion design, and synthetic generative AI video commercials.
+              A comprehensive showcase of brand identity architectures, tactile retail packaging systems, social media reels, and AI video ads.
             </p>
 
             {/* Spec Box */}
-            <div className="grid grid-cols-3 gap-4 p-6 rounded-2xl bg-[#f5f3f0] border border-[#e5e2dc] mt-6">
+            <div className="grid grid-cols-2 gap-4 p-6 rounded-2xl bg-[#f5f3f0] border border-[#e5e2dc] mt-6">
               <div>
                 <span className="font-display text-[10px] uppercase tracking-wider text-[#5f6368] font-bold block">
-                  BASE LOCATION
+                  LOCATION
                 </span>
                 <span className="font-display text-sm font-bold text-[#1b1c1a]">
-                  Rajasthan, India (IST)
+                  Rajasthan, India
                 </span>
               </div>
               <div>
                 <span className="font-display text-[10px] uppercase tracking-wider text-[#5f6368] font-bold block">
-                  MARKET COVERAGE
-                </span>
-                <span className="font-display text-sm font-bold text-[#1b1c1a]">
-                  US • EU • APAC Remote
-                </span>
-              </div>
-              <div>
-                <span className="font-display text-[10px] uppercase tracking-wider text-[#5f6368] font-bold block">
-                  AVAILABILITY
+                  DIRECT EMAIL
                 </span>
                 <span className="font-display text-sm font-bold text-[#fd591e]">
-                  Open for Q3/Q4 Commissions
+                  {PROFILE_DATA.email}
                 </span>
               </div>
             </div>
@@ -184,9 +177,9 @@ export const PortfolioPdfView: React.FC<PortfolioPdfViewProps> = ({ onBack }) =>
 
           {/* Cover Footer */}
           <div className="flex items-center justify-between border-t border-[#1b1c1a]/15 pt-6 text-xs text-[#5f6368] font-display">
-            <span>hello@nayansinghrao.design</span>
+            <span>{PROFILE_DATA.email}</span>
             <span>Document 01 / 05</span>
-            <span>© 2025 Nayan Singh Rao</span>
+            <span>© {new Date().getFullYear()} Nayan Singh Rao</span>
           </div>
         </article>
 
@@ -205,13 +198,10 @@ export const PortfolioPdfView: React.FC<PortfolioPdfViewProps> = ({ onBack }) =>
             {/* Bio Header */}
             <div>
               <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#1b1c1a]">
-                Visual Designer, Motion Creator & Generative Art Director
+                Visual Designer & Motion Creator
               </h2>
               <p className="font-sans text-base text-[#1b1c1a] mt-3 leading-relaxed">
-                Hi, I'm Nayan Singh Rao — a multi-disciplinary graphic designer driven by brand narrative, kinetic typography, and the cutting edge of AI-assisted visual production. Over the past 6+ years, I've worked with founders, agencies, and D2C brands to engineer visual languages that cut through noise and resonate instantly with audiences.
-              </p>
-              <p className="font-sans text-sm text-[#5f6368] mt-2 leading-relaxed">
-                From architecting end-to-end packaging and identity systems to directing viral short-form motion reels and generative commercial ad campaigns, my approach blends classic typography discipline with modern synthetic workflow.
+                I'm a graphic designer based in Rajasthan, India, focused on branding, visual identity, logo design and packaging design. I currently work at Jundalo Technologies, creating AI-generated video ads, social media reels and graphic design work.
               </p>
             </div>
 
@@ -223,15 +213,15 @@ export const PortfolioPdfView: React.FC<PortfolioPdfViewProps> = ({ onBack }) =>
                 </div>
                 <div>
                   <h4 className="font-display font-bold text-sm text-[#1b1c1a]">
-                    Bachelor of Arts / Design Studies
+                    Arts
                   </h4>
                   <span className="font-sans text-xs text-[#5f6368]">
-                    Govind Guru Tribal University, Banswara • Rajasthan, India
+                    Govind Guru Tribal University (GGTU), Banswara • 2023 - 2026
                   </span>
                 </div>
               </div>
               <span className="font-display text-xs font-semibold px-3 py-1 rounded-full bg-white text-[#1b1c1a]">
-                Verified Degree
+                2023 - 2026
               </span>
             </div>
 
@@ -246,7 +236,7 @@ export const PortfolioPdfView: React.FC<PortfolioPdfViewProps> = ({ onBack }) =>
                     Branding & Visual Identity
                   </h3>
                   <p className="font-sans text-xs text-[#5f6368] mt-2 leading-relaxed">
-                    Brand marks, typography architectures, color chemistry, and retail packaging dielines built for enduring distinction.
+                    Brand marks, typography architectures, color systems, and packaging design built for enduring distinction.
                   </p>
                 </div>
                 <span className="font-display text-[10px] text-[#fd591e] uppercase font-bold mt-4 block">
@@ -263,7 +253,7 @@ export const PortfolioPdfView: React.FC<PortfolioPdfViewProps> = ({ onBack }) =>
                     Reels & Social Media
                   </h3>
                   <p className="font-sans text-xs text-[#5f6368] mt-2 leading-relaxed">
-                    High-retention kinetic typography reels, viral vertical short-form formats, and audio-synced video micro-content.
+                    High-retention kinetic typography reels, vertical short-form formats, and audio-synced video micro-content.
                   </p>
                 </div>
                 <span className="font-display text-[10px] text-[#fd591e] uppercase font-bold mt-4 block">
@@ -280,7 +270,7 @@ export const PortfolioPdfView: React.FC<PortfolioPdfViewProps> = ({ onBack }) =>
                     AI Video Ads
                   </h3>
                   <p className="font-sans text-xs text-[#5f6368] mt-2 leading-relaxed">
-                    Prompt-directed commercial visuals, Runway Gen-3 Alpha camera passes, and diffusion-rendered concept spots.
+                    Prompt-directed visuals, Runway Gen-3 Alpha passes, and synthetic concept spots.
                   </p>
                 </div>
                 <span className="font-display text-[10px] text-[#fd591e] uppercase font-bold mt-4 block">
@@ -289,25 +279,7 @@ export const PortfolioPdfView: React.FC<PortfolioPdfViewProps> = ({ onBack }) =>
               </div>
             </div>
 
-            {/* Performance Strip */}
-            <div className="grid grid-cols-4 gap-4 p-6 rounded-2xl bg-[#111111] text-white">
-              <div>
-                <span className="font-display text-3xl font-bold text-white block">48+</span>
-                <span className="font-sans text-xs text-white/70">Global Deployments</span>
-              </div>
-              <div>
-                <span className="font-display text-3xl font-bold text-[#fd591e] block">12M+</span>
-                <span className="font-sans text-xs text-white/70">Reel Impressions</span>
-              </div>
-              <div>
-                <span className="font-display text-3xl font-bold text-white block">100%</span>
-                <span className="font-sans text-xs text-white/70">Vector Press Precision</span>
-              </div>
-              <div>
-                <span className="font-display text-3xl font-bold text-white block">&lt;48h</span>
-                <span className="font-sans text-xs text-white/70">Fast Sprints</span>
-              </div>
-            </div>
+
           </div>
 
           <div className="flex items-center justify-between border-t border-[#1b1c1a]/15 pt-4 text-xs text-[#5f6368] font-display">
@@ -338,8 +310,10 @@ export const PortfolioPdfView: React.FC<PortfolioPdfViewProps> = ({ onBack }) =>
                 <div className="w-full md:w-56 h-44 rounded-xl overflow-hidden bg-[#efeeeb] shrink-0 relative">
                   <img
                     src={study.image}
-                    alt={study.imageAlt}
+                    alt={study.imageAlt || `Design showcase visual for ${study.title}`}
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/75 text-white font-display text-[9px] uppercase font-bold">
                     {study.category}
@@ -427,7 +401,7 @@ export const PortfolioPdfView: React.FC<PortfolioPdfViewProps> = ({ onBack }) =>
         <article className="w-full min-h-[1160px] bg-[#fbf9f6] rounded-xl shadow-2xl p-12 sm:p-16 flex flex-col justify-between border border-[#e5e2dc] print:shadow-none print:rounded-none print:border-none print:min-h-screen print:break-after-page">
           <div className="flex items-center justify-between border-b border-[#1b1c1a]/15 pb-4">
             <span className="font-display text-xs uppercase tracking-widest text-[#fd591e] font-bold">
-              04 / CURATED SHOWCASE — REELS & COMMERCIALS
+              04 / CURATED SHOWCASE — REELS & AI VIDEO ADS
             </span>
             <span className="font-sans text-xs text-[#5f6368]">SELECTED PORTFOLIO</span>
           </div>
@@ -441,8 +415,10 @@ export const PortfolioPdfView: React.FC<PortfolioPdfViewProps> = ({ onBack }) =>
                 <div className="w-full md:w-56 h-44 rounded-xl overflow-hidden bg-[#efeeeb] shrink-0 relative">
                   <img
                     src={proj.image}
-                    alt={proj.imageAlt}
+                    alt={proj.imageAlt || `Portfolio showcase visual for ${proj.title}`}
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-[#fd591e] text-white font-display text-[9px] uppercase font-bold">
                     {proj.badge}
@@ -467,21 +443,23 @@ export const PortfolioPdfView: React.FC<PortfolioPdfViewProps> = ({ onBack }) =>
                     </p>
                   </div>
 
-                  <div className="p-3 rounded-lg bg-[#f5f3f0] mt-3 border border-[#e5e2dc]">
-                    <span className="font-display text-[10px] uppercase tracking-wider text-[#5f6368] font-bold block">
-                      IMPACT & METRICS:
-                    </span>
-                    <span className="font-sans text-xs font-semibold text-[#1b1c1a]">
-                      {proj.metrics}
-                    </span>
-                  </div>
+                  {proj.metrics && (
+                    <div className="p-3 rounded-lg bg-[#f5f3f0] mt-3 border border-[#e5e2dc]">
+                      <span className="font-display text-[10px] uppercase tracking-wider text-[#5f6368] font-bold block">
+                        HIGHLIGHT:
+                      </span>
+                      <span className="font-sans text-xs font-semibold text-[#1b1c1a]">
+                        {proj.metrics}
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
           </div>
 
           <div className="flex items-center justify-between border-t border-[#1b1c1a]/15 pt-4 text-xs text-[#5f6368] font-display">
-            <span>Commercial Showreels</span>
+            <span>Selected Showreels</span>
             <span>Document 04 / 05</span>
             <span>Nayan Singh Rao</span>
           </div>
@@ -495,47 +473,18 @@ export const PortfolioPdfView: React.FC<PortfolioPdfViewProps> = ({ onBack }) =>
             <span className="font-display text-xs uppercase tracking-widest text-[#fd591e] font-bold">
               05 / PRODUCTION TOOLKIT & DIRECT BOOKING
             </span>
-            <span className="font-sans text-xs text-[#5f6368]">STUDIO RAO</span>
+            <span className="font-sans text-xs text-[#5f6368]">NAYAN SINGH RAO</span>
           </div>
 
           <div className="flex flex-col gap-8 my-6">
-            {/* Tool Software Strip */}
-            <div>
-              <h3 className="font-display text-2xl font-bold text-[#1b1c1a] mb-3">
-                Production Software Stack
-              </h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {TOOL_ECOSYSTEM.map((t) => (
-                  <div key={t.id} className="p-3.5 rounded-xl bg-white border border-[#e5e2dc] shadow-xs">
-                    <span className="font-display font-bold text-sm text-[#1b1c1a] block">
-                      {t.name}
-                    </span>
-                    <span className="font-sans text-[11px] text-[#5f6368] block mt-0.5">
-                      {t.badge} • {t.status}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Languages */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="p-4 rounded-xl bg-[#efeeeb] border border-[#e5e2dc]">
-                <span className="font-display text-xs uppercase tracking-wider text-[#fd591e] font-bold block">
-                  Hindi (Native)
-                </span>
-                <p className="font-sans text-xs text-[#5f6368] mt-1">
-                  Fluent verbal, written, cultural nuance & typography scripts.
-                </p>
-              </div>
-              <div className="p-4 rounded-xl bg-[#efeeeb] border border-[#e5e2dc]">
-                <span className="font-display text-xs uppercase tracking-wider text-[#1b1c1a] font-bold block">
-                  English (Professional)
-                </span>
-                <p className="font-sans text-xs text-[#5f6368] mt-1">
-                  Full professional working proficiency for global client direction.
-                </p>
-              </div>
+            {/* Focus Disciplines Card */}
+            <div className="p-6 rounded-xl bg-white border border-[#e5e2dc] shadow-xs">
+              <span className="font-display text-xs uppercase tracking-wider text-[#fd591e] font-bold block mb-2">
+                CORE FOCUS
+              </span>
+              <p className="font-sans text-sm text-[#1b1c1a] leading-relaxed">
+                Branding, visual identity, logo design, packaging design, social media reels, and AI video ads.
+              </p>
             </div>
 
             {/* Direct Channels Card */}
@@ -548,7 +497,7 @@ export const PortfolioPdfView: React.FC<PortfolioPdfViewProps> = ({ onBack }) =>
                   Have a project in mind? Let's connect.
                 </h2>
                 <p className="font-sans text-sm text-white/70 mt-2 leading-relaxed">
-                  Accepting direct commissions for brand identity revamps, retail packaging overhauls, viral reels, and synthetic AI commercial productions.
+                  Accepting direct commissions for brand identity revamps, retail packaging overhauls, social media reels, and AI video ads.
                 </p>
               </div>
 
@@ -558,24 +507,35 @@ export const PortfolioPdfView: React.FC<PortfolioPdfViewProps> = ({ onBack }) =>
                     DIRECT EMAIL
                   </span>
                   <a
-                    href="mailto:hello@nayansinghrao.design"
+                    href={`mailto:${PROFILE_DATA.email}`}
                     className="font-display text-sm font-bold text-white hover:text-[#fd591e] transition-colors"
                   >
-                    hello@nayansinghrao.design
+                    {PROFILE_DATA.email}
                   </a>
                 </div>
                 <div>
                   <span className="font-display text-[10px] uppercase tracking-wider text-white/50 block">
-                    WHATSAPP & VOICE
+                    ONLINE PROFILES
                   </span>
-                  <a
-                    href="https://wa.me/919876543210"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-display text-sm font-bold text-white hover:text-[#fd591e] transition-colors"
-                  >
-                    +91 98765 43210
-                  </a>
+                  <div className="flex items-center gap-4 mt-1">
+                    <a
+                      href={PROFILE_DATA.behanceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-display text-sm font-bold text-white hover:text-[#fd591e] transition-colors"
+                    >
+                      Behance ↗
+                    </a>
+                    <span className="text-white/30">•</span>
+                    <a
+                      href={PROFILE_DATA.linkedInUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-display text-sm font-bold text-white hover:text-[#fd591e] transition-colors"
+                    >
+                      LinkedIn ↗
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

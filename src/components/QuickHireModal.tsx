@@ -44,18 +44,11 @@ export const QuickHireModal: React.FC<QuickHireModalProps> = ({
           <span className="material-symbols-outlined text-[18px]">close</span>
         </button>
 
-        <div className="flex items-center gap-2 mb-2">
-          <span className="w-2 h-2 rounded-full bg-[#fd591e] animate-pulse"></span>
-          <span className="font-display text-xs uppercase tracking-widest text-[#fd591e] font-bold">
-            Direct Commission • Q3/Q4 2025
-          </span>
-        </div>
-
         <h3 className="font-display text-2xl font-bold tracking-tight text-[#1b1c1a] dark:text-[#f3f2ee]">
           Let's work together.
         </h3>
         <p className="font-sans text-sm text-[#5f6368] dark:text-[#a2a09c] mt-1 mb-6">
-          Have an urgent brief or looking for full brand art direction? Leave a quick note or switch to WhatsApp.
+          Have a project brief or inquiry? Send a quick message below.
         </p>
 
         {submitted ? (
@@ -67,7 +60,7 @@ export const QuickHireModal: React.FC<QuickHireModalProps> = ({
               Brief Received!
             </h4>
             <p className="font-sans text-xs text-emerald-700 dark:text-emerald-300">
-              Thanks for reaching out! Nayan will review your scope and respond within 12 hours.
+              Thanks for reaching out! Nayan will review your message shortly.
             </p>
           </div>
         ) : (
@@ -93,7 +86,7 @@ export const QuickHireModal: React.FC<QuickHireModalProps> = ({
               <input
                 type="email"
                 required
-                placeholder="e.g. maya@company.com"
+                placeholder="Work email address"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="w-full px-3.5 py-2.5 rounded-lg bg-[#f5f3f0] dark:bg-[#1a1b1f] border border-[#e5e2dc] dark:border-[#2d3034] font-sans text-sm text-[#1b1c1a] dark:text-[#f3f2ee] placeholder:text-[#5f6368]/60 dark:placeholder:text-[#a2a09c]/50 focus:bg-white dark:focus:bg-[#202228] focus:outline-none focus:border-[#fd591e] transition-colors"
@@ -111,7 +104,7 @@ export const QuickHireModal: React.FC<QuickHireModalProps> = ({
               >
                 <option value="brand-identity" className="bg-white dark:bg-[#1a1b1f]">Brand Identity & Styleguide</option>
                 <option value="motion-reels" className="bg-white dark:bg-[#1a1b1f]">Reels & Kinetic Motion Graphics</option>
-                <option value="ai-commercials" className="bg-white dark:bg-[#1a1b1f]">Generative AI Video Commercials</option>
+                <option value="ai-ads" className="bg-white dark:bg-[#1a1b1f]">AI Video Ads</option>
                 <option value="packaging" className="bg-white dark:bg-[#1a1b1f]">Packaging & Retail Labels</option>
                 <option value="amazon-a-plus" className="bg-white dark:bg-[#1a1b1f]">Amazon A+ E-Commerce Suite</option>
               </select>
@@ -134,20 +127,11 @@ export const QuickHireModal: React.FC<QuickHireModalProps> = ({
             <div className="flex items-center gap-3 pt-2">
               <button
                 type="submit"
-                className="flex-1 py-3 px-6 rounded-full bg-[#fd591e] hover:bg-[#ae3200] text-white font-display text-sm font-semibold flex items-center justify-center gap-1.5 shadow-md cursor-pointer transition-colors"
+                className="w-full py-3 px-6 rounded-full bg-[#fd591e] hover:bg-[#ae3200] text-white font-display text-sm font-semibold flex items-center justify-center gap-1.5 shadow-md cursor-pointer transition-colors"
               >
                 <span>Send Brief</span>
                 <span className="material-symbols-outlined text-[16px]">send</span>
               </button>
-              <a
-                href="https://wa.me/919876543210"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-3 rounded-full bg-[#efeeeb] dark:bg-[#202226] hover:bg-[#eae8e5] dark:hover:bg-[#282a30] text-[#1b1c1a] dark:text-[#f3f2ee] font-display text-xs font-semibold flex items-center gap-1 transition-colors border border-transparent dark:border-[#2d3034]"
-              >
-                <span className="material-symbols-outlined text-[16px]">chat</span>
-                <span>WhatsApp</span>
-              </a>
             </div>
 
             <button

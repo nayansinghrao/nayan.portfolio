@@ -54,11 +54,11 @@ export const BRAND_DECKS: Record<string, BrandDeck> = {
     fontFamily: 'Space Grotesk, sans-serif',
     summary: 'Sharpix blends advanced grooming technology with a refined minimalist design language, creating products that feel powerful, modern and engineered for everyday precision.',
     designer: {
-      name: 'Nayan Rao',
-      role: 'Brand Designer / Founder',
-      contact: '+91 9845642582',
-      email: 'sharpix@gmail.com',
-      location: 'B/3-02, Sector 2, Op Abhyuday Bank, Vashi, Navi Mumbai, Maharashtra, India 400703',
+      name: 'Nayan Singh Rao',
+      role: 'Graphic Designer',
+      contact: '',
+      email: 'nayansinghrao.designs@gmail.com',
+      location: 'Rajasthan, India',
     },
     slides: [
       {
@@ -119,13 +119,13 @@ export const BRAND_DECKS: Record<string, BrandDeck> = {
         pageNumber: 6,
         type: 'cards',
         title: 'Tactile Business Cards',
-        headline: 'Branded Founder Business Cards',
+        headline: 'Branded Executive Business Cards',
         description: 'Premium soft-touch matte laminated business card set: Front features bold Nayan Rao typography; reverse presents the stark Sharpix logo over an oversized grey slash.',
         metaBadge: '06 / 18 • PRINT COLLATERAL',
         specs: {
-          'Cardholder': 'Nayan Rao — Brand Designer / Founder',
-          'Address': 'Navi Mumbai, Maharashtra, India',
-          'Contact': '+91 9845642582 • sharpix@gmail.com • www.sharpix.com',
+          'Cardholder': 'Nayan Singh Rao — Graphic Designer',
+          'Location': 'Rajasthan, India',
+          'Email': 'nayansinghrao.designs@gmail.com',
         },
       },
       {
@@ -141,7 +141,7 @@ export const BRAND_DECKS: Record<string, BrandDeck> = {
         type: 'social',
         title: 'Digital Ad Campaigns & Social Media',
         headline: 'Mobile App Carousel & Story Adverts',
-        description: 'Integrated digital campaign creatives: "Define Your Edge", "The Art of Sharpness", and viral engagement hook "Give Your Boys The Love They Deserve".',
+        description: 'Integrated digital campaign creatives: "Define Your Edge", "The Art of Sharpness", and engagement hook "Give Your Boys The Love They Deserve".',
         metaBadge: '08 / 18 • DIGITAL ACQUISITION',
         tags: ['Instagram Feed', 'Story Ads', 'Conversion Creative', 'QR Landing'],
       },
@@ -241,11 +241,11 @@ export const BRAND_DECKS: Record<string, BrandDeck> = {
     fontFamily: 'Zing Script Rust, cursive, sans-serif',
     summary: 'Cocona is a contemporary coconut water brand created for a new generation that values clean hydration, mindful living, and natural wellness. Transforms coconut water from a drink into a daily wellness ritual.',
     designer: {
-      name: 'Nayan Rao',
-      role: 'Brand Designer / Founder',
-      contact: '+91 9876543210 / +91 9660367463',
-      email: 'hycocona@gmail.com',
-      location: 'B/3-02, Sector 2, Op Abhyuday Bank, Vashi, Navi Mumbai, India (400703)',
+      name: 'Nayan Singh Rao',
+      role: 'Graphic Designer',
+      contact: '',
+      email: 'nayansinghrao.designs@gmail.com',
+      location: 'Rajasthan, India',
     },
     slides: [
       {
@@ -314,13 +314,13 @@ export const BRAND_DECKS: Record<string, BrandDeck> = {
       {
         pageNumber: 7,
         type: 'badge',
-        title: 'Founder & Team Identification Lanyards',
-        headline: 'Dual Identification Badges: Nayan Rao & Janak Patidar',
-        description: 'Official corporate staff cards: Nayan Rao (Brand Designer / Founder, ID 2432393) and Janak Patidar (Founder) housed in matte white rounded holders with cotton woven lanyards.',
+        title: 'Team Identification Lanyards',
+        headline: 'Staff Identification Badges',
+        description: 'Official corporate staff cards: Nayan Rao (Brand Designer, ID 2432393) housed in matte white rounded holders with cotton woven lanyards.',
         metaBadge: '07 / 16 • CORPORATE IDENTITY',
         specs: {
-          'Brand Designer / Founder': 'Nayan Rao (hycocona@gmail.com, Navi Mumbai)',
-          'Founder': 'Janak Patidar (www.cocona.com)',
+          'Graphic Designer': 'Nayan Singh Rao (nayansinghrao.designs@gmail.com)',
+          'Brand Mark': 'Cocona Wellness',
         },
       },
       {
@@ -337,7 +337,7 @@ export const BRAND_DECKS: Record<string, BrandDeck> = {
         title: 'Hero Can Packaging Visual',
         headline: 'STAY REFRESHED — Natural Hydration Inspired By The Tropics',
         description: 'Cinematic studio hero shot of the 250ml yellow-green aluminium can bursting through pristine water droplets and splash rings, with coconut palm trees graphic.',
-        metaBadge: '09 / 16 • COMMERCIAL PACKAGING',
+        metaBadge: '09 / 16 • RETAIL PACKAGING',
         tags: ['100% Natural', 'Rich in Electrolytes', 'Refreshingly Pure', 'Pure Hydration'],
       },
       {
@@ -420,10 +420,10 @@ export const BRAND_DECKS: Record<string, BrandDeck> = {
     summary: 'Seth Dhanraj was created as a fictional jewellery brand inspired by timeless elegance, refined craftsmanship, and modern sophistication. Exploring premium aesthetics, atmosphere, and visual storytelling.',
     designer: {
       name: 'Nayan Singh Rao',
-      role: 'Manager / Brand Designer',
-      contact: '+91 9876543210 / +91 9543637643',
-      email: 'sethdhanraj@gmail.com / nayansingh@gmail.com',
-      location: 'Chittri, Badgi, Dist. Dungarpur, State Rajasthan (314635)',
+      role: 'Graphic Designer',
+      contact: '',
+      email: 'nayansinghrao.designs@gmail.com',
+      location: 'Rajasthan, India',
     },
     slides: [
       {
@@ -517,9 +517,9 @@ export const BRAND_DECKS: Record<string, BrandDeck> = {
         description: 'Parchment visiting card set: Front features clean gold arch logo; reverse features rich royal navy background with gold lettering for Nayan Singh Rao, Manager.',
         metaBadge: '09 / 20 • PRINT IDENTITY',
         specs: {
-          'Name & Title': 'Nayan Singh Rao — Manager',
-          'Contact': '+91 9876543210 • sethdhanraj@gmail.com',
-          'Branch': 'B/3-02, Sector 2, Op Abhyuday Bank, Mumbai, Maharashtra (400703)',
+          'Name & Title': 'Nayan Singh Rao — Graphic Designer',
+          'Email': 'nayansinghrao.designs@gmail.com',
+          'Location': 'Rajasthan, India',
         },
       },
       {
@@ -530,8 +530,9 @@ export const BRAND_DECKS: Record<string, BrandDeck> = {
         description: 'Luxury ID pass featuring amber-gold lanyard and badge showing Nayan Singh Rao with hometown credentials in Dungarpur, Rajasthan (314635).',
         metaBadge: '10 / 20 • STAFF CREDENTIALS',
         specs: {
-          'ID No.': '2432373 • DOB 02/06/2004',
-          'Origin': 'Chittri, Badgi, Dist. Dungarpur, State Rajasthan (314635)',
+          'Name': 'Nayan Singh Rao',
+          'Role': 'Graphic Designer',
+          'Origin': 'Rajasthan, India',
         },
       },
       {

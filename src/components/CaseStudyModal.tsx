@@ -92,8 +92,10 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
             <>
               <img
                 src={project.image}
-                alt={project.imageAlt}
+                alt={project.imageAlt || `Cover image for ${project.title} branding project`}
                 className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             </>
@@ -308,7 +310,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
               </span>
               <div>
                 <span className="font-display text-[11px] uppercase tracking-wider text-white/60 block">
-                  Commercial Performance & Impact
+                  Performance & Impact
                 </span>
                 <span className="font-display font-bold text-sm sm:text-base text-white">
                   {project.metrics}
