@@ -102,6 +102,7 @@ export interface ProjectItem {
   behanceUrl: string;
   category?: string;
   categorySlug?: string;
+  categories?: string[];
   badge?: string;
   image?: string;
   imageAlt?: string;
@@ -119,6 +120,21 @@ export interface ProjectItem {
   metrics?: string;
 }
 
+export type ProjectCategory = 'All' | 'Branding' | 'Packaging' | 'Video Ads';
+
+export interface CategoryFilterItem {
+  id: ProjectCategory;
+  label: string;
+  icon: string;
+}
+
+export const WORK_CATEGORIES: CategoryFilterItem[] = [
+  { id: 'All', label: 'All', icon: 'grid_view' },
+  { id: 'Branding', label: 'Branding', icon: 'palette' },
+  { id: 'Packaging', label: 'Packaging', icon: 'inventory_2' },
+  { id: 'Video Ads', label: 'Video Ads', icon: 'smart_display' },
+];
+
 export const CONCEPT_BRANDS: ProjectItem[] = [
   {
     id: 'cocona',
@@ -128,6 +144,8 @@ export const CONCEPT_BRANDS: ProjectItem[] = [
     behanceUrl: 'https://www.behance.net/gallery/249545371/Cocona-Premium-Coconut-Water-Branding',
     badge: 'Concept Project',
     indexNumber: '01 / 03',
+    category: 'Branding & Packaging',
+    categories: ['Branding', 'Packaging'],
   },
   {
     id: 'seth-dhanraj',
@@ -137,6 +155,8 @@ export const CONCEPT_BRANDS: ProjectItem[] = [
     behanceUrl: 'https://www.behance.net/gallery/249332109/Seth-Dhanraj-A-Jewellery-Brand',
     badge: 'Concept Project',
     indexNumber: '02 / 03',
+    category: 'Branding',
+    categories: ['Branding'],
   },
   {
     id: 'sharpix',
@@ -146,6 +166,8 @@ export const CONCEPT_BRANDS: ProjectItem[] = [
     behanceUrl: 'https://www.behance.net/gallery/249624569/Sharpix-Premium-Grooming-Technology-Branding',
     badge: 'Concept Project',
     indexNumber: '03 / 03',
+    category: 'Branding & Packaging',
+    categories: ['Branding', 'Packaging'],
   },
 ];
 

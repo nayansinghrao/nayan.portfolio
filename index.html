@@ -8,6 +8,23 @@
     <meta name="theme-color" content="#ff5a1f" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <!-- Prevent flash of unstyled theme on page load -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('portfolio-theme') || localStorage.getItem('theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (saved === 'dark' || (!saved && prefersDark)) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.style.colorScheme = 'dark';
+          } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.style.colorScheme = 'light';
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- OpenGraph Social Sharing -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Nayan Singh Rao | Graphic Designer" />

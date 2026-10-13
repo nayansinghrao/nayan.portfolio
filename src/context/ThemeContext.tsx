@@ -17,13 +17,17 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [theme, setThemeState] = useState<Theme>(() => {
     // 1. Check saved localStorage
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem(THEME_STORAGE_KEY) as Theme | null;
-      if (saved === 'light' || saved === 'dark') {
-        return saved;
-      }
-      // 2. Check system preference
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        return 'dark';
+      try {
+        const saved = (localStorage.getItem(THEME_STORAGE_KEY) || localStorage.getItem('theme')) as Theme | null;
+        if (saved === 'light' || saved === 'dark') {
+          return saved;
+        }
+        // 2. Check system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+      } catch {
+        // Fallback if localStorage is restricted
       }
     }
     return 'light';
@@ -42,7 +46,19 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       root.style.colorScheme = 'light';
       document.body.classList.remove('dark');
     }
-    localStorage.setItem(THEME_STORAGE_KEY, theme);
+
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, theme);
+      localStorage.setItem('theme', theme);
+    } catch {
+      // Ignore quota or private-browsing errors
+    }
+
+    // Keep mobile browser toolbar theme-color in sync
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute('content', theme === 'dark' ? '#0d0e0f' : '#ff5a1f');
+    }
   }, [theme]);
 
   // Listen to system theme changes if user has not set a preference in this session

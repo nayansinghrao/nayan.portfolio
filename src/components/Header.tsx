@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
+import { ThemeToggle } from './ThemeToggle';
 import {
   EMAIL_ADDRESS,
   BEHANCE_URL,
@@ -20,7 +21,7 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>(propActiveSection || 'home');
-  const { isDark, toggleTheme } = useTheme();
+  const { isDark } = useTheme();
 
   const navItems = [
     { id: 'home', label: 'Home' },
@@ -119,17 +120,8 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Right Controls */}
         <div className="flex items-center gap-2 sm:gap-2.5">
-          {/* Theme Toggle Button */}
-          <button
-            onClick={toggleTheme}
-            aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-            title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            className="w-9 h-9 rounded-full bg-[#efeeeb] hover:bg-[#eae8e5] dark:bg-[#1f2125] dark:hover:bg-[#282a30] text-[#1b1c1a] dark:text-[#f3f2ee] flex items-center justify-center transition-all duration-200 border border-[#e5e2dc]/70 dark:border-[#2d3034] hover:scale-105 active:scale-95 cursor-pointer shadow-2xs"
-          >
-            <span className="material-symbols-outlined text-[19px] transition-transform duration-300">
-              {isDark ? 'light_mode' : 'dark_mode'}
-            </span>
-          </button>
+          {/* Theme Toggle Switch */}
+          <ThemeToggle />
 
           {/* Download Resume Button (Navbar) */}
           <a
@@ -189,6 +181,9 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           <div className="pt-2 flex flex-col gap-3 border-t border-[#e5e2dc]/60 dark:border-[#26282c]">
+            {/* Theme Toggle in Mobile Drawer */}
+            <ThemeToggle showLabel className="w-full" />
+
             {/* Download Resume Button */}
             <a
               href="/resume.pdf"
