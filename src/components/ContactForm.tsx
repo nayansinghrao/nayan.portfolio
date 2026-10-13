@@ -49,6 +49,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitAttempted, setSubmitAttempted] = useState(false);
   const [copiedSummary, setCopiedSummary] = useState(false);
+  const [submitProgress, setSubmitProgress] = useState(0);
   // Honeypot anti-spam field state
   const [honeypot, setHoneypot] = useState('');
 
@@ -173,16 +174,27 @@ export const ContactForm: React.FC<ContactFormProps> = ({
       return;
     }
 
-    // Set submitting loading state with disabled button & spinner
+    // Set submitting loading state with disabled button & percentage progress
     setIsSubmitting(true);
+    setSubmitProgress(15);
     const snapshot = { ...formData };
+
+    let currentPct = 15;
+    const progressTimer = setInterval(() => {
+      currentPct = Math.min(95, currentPct + 18);
+      setSubmitProgress(currentPct);
+    }, 180);
 
     // Simulate reliable dispatch processing
     setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmittedSnapshot(snapshot);
-      setIsSubmitted(true);
-      if (onSuccess) onSuccess();
+      clearInterval(progressTimer);
+      setSubmitProgress(100);
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setSubmittedSnapshot(snapshot);
+        setIsSubmitted(true);
+        if (onSuccess) onSuccess();
+      }, 150);
     }, 1100);
   };
 
@@ -194,6 +206,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
       message: '',
     });
     setHoneypot('');
+    setSubmitProgress(0);
     setTouched({});
     setErrors({});
     setSubmitAttempted(false);
@@ -680,7 +693,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                   d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                 />
               </svg>
-              <span>Processing Inquiry...</span>
+              <span>Processing Inquiry ({submitProgress}%)...</span>
             </>
           ) : (
             <>

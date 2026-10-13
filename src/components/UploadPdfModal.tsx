@@ -65,6 +65,7 @@ export const UploadPdfModal: React.FC<UploadPdfModalProps> = ({
   const [pdfRecords, setPdfRecords] = useState<Record<string, BrandPdfRecord>>({});
   const [activeBrandTab, setActiveBrandTab] = useState<'all' | 'cocona' | 'seth-dhanraj' | 'sharpix'>('all');
   const [uploadingBrand, setUploadingBrand] = useState<string | null>(null);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const [dragOverBrand, setDragOverBrand] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
@@ -114,14 +115,24 @@ export const UploadPdfModal: React.FC<UploadPdfModalProps> = ({
 
     try {
       setUploadingBrand(brand.id);
+      setUploadProgress(20);
+      const progressTimer = setInterval(() => {
+        setUploadProgress((prev) => Math.min(95, prev + 18));
+      }, 150);
+
       const record = await saveBrandPdf(brand.id, brand.name, file);
+      clearInterval(progressTimer);
+      setUploadProgress(100);
       setPdfRecords((prev) => ({ ...prev, [brand.id]: record }));
       showToast(`✓ ${brand.name} PDF successfully uploaded!`);
     } catch (err) {
       console.error('Upload failed:', err);
       showToast('❌ Failed to save PDF. Please try again.');
     } finally {
-      setUploadingBrand(null);
+      setTimeout(() => {
+        setUploadingBrand(null);
+        setUploadProgress(0);
+      }, 300);
     }
   };
 
@@ -384,8 +395,14 @@ export const UploadPdfModal: React.FC<UploadPdfModalProps> = ({
                         <div className="flex flex-col items-center justify-center gap-2 py-2">
                           <span className="w-6 h-6 border-2 border-[#fd591e] border-t-transparent rounded-full animate-spin"></span>
                           <span className="font-display text-xs font-bold text-[#fd591e]">
-                            Uploading {brand.name} PDF...
+                            Uploading {brand.name} PDF ({uploadProgress}%)...
                           </span>
+                          <div className="w-32 h-1 bg-white/20 rounded-full overflow-hidden mt-1">
+                            <div
+                              className="h-full bg-[#fd591e] rounded-full transition-all duration-150"
+                              style={{ width: `${uploadProgress}%` }}
+                            />
+                          </div>
                         </div>
                       ) : (
                         <div className="flex flex-col items-center justify-center gap-2">

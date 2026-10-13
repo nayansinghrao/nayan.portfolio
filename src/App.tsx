@@ -3,6 +3,7 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { BackToTop } from './components/BackToTop';
 import { ScrollProgressBar } from './components/ScrollProgressBar';
+import { PageLoader } from './components/PageLoader';
 import { HomeScreen } from './screens/HomeScreen';
 import { PortfolioPdfView } from './screens/PortfolioPdfView';
 
@@ -70,6 +71,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#fbf9f6] text-[#1b1c1a] dark:bg-[#0d0e0f] dark:text-[#f3f2ee] flex flex-col antialiased selection:bg-[#ff5a1f] selection:text-white relative transition-colors duration-250 overflow-x-hidden">
+      {/* Dynamic Site Loading Screen with Percentage */}
+      <PageLoader />
+
       {/* Subtle Scroll Progress Bar at the top of the viewport */}
       <ScrollProgressBar />
 

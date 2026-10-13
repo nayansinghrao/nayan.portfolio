@@ -9,13 +9,28 @@ interface ProjectModalProps {
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [loadPercentage, setLoadPercentage] = useState(0);
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const progressTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (!project) return;
 
     setIsLoading(true);
+    setLoadPercentage(10);
+
+    // Progressive loading percentage simulation while iframe streams in
+    let currentPct = 10;
+    if (progressTimerRef.current) clearInterval(progressTimerRef.current);
+    progressTimerRef.current = setInterval(() => {
+      // Natural slowing ramp towards 94% until onLoad fires
+      if (currentPct < 90) {
+        const step = Math.max(2, Math.floor((90 - currentPct) / 6));
+        currentPct = Math.min(92, currentPct + step);
+        setLoadPercentage(currentPct);
+      }
+    }, 120);
 
     // Lock page scroll behind the modal
     const originalOverflow = document.body.style.overflow;
@@ -64,6 +79,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
     return () => {
       clearTimeout(focusTimeout);
+      if (progressTimerRef.current) clearInterval(progressTimerRef.current);
       document.body.style.overflow = originalOverflow;
       window.removeEventListener('keydown', handleKeyDown);
       if (previouslyFocusedElement) {
@@ -71,6 +87,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
       }
     };
   }, [project, onClose]);
+
+  const handleIframeLoad = () => {
+    if (progressTimerRef.current) clearInterval(progressTimerRef.current);
+    setLoadPercentage(100);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 250);
+  };
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -126,12 +150,40 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               </button>
             </div>
 
-            {/* Modal Body: Behance iframe with loading spinner */}
+            {/* Modal Body: Behance iframe with percentage loader */}
             <div className="relative flex-1 w-full h-full bg-[#0d0e10] overflow-hidden">
               {isLoading && (
-                <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#0d0e10] text-white gap-3.5 pointer-events-none">
-                  <div className="w-9 h-9 border-3 border-white/20 border-t-[#ff5a1f] rounded-full animate-spin" />
-                  <span className="text-xs sm:text-sm font-sans text-[#a2a09c]">Loading project preview...</span>
+                <div
+                  className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#0d0e10] text-white p-6 gap-4 select-none pointer-events-none"
+                  role="progressbar"
+                  aria-valuenow={loadPercentage}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-label={`Loading project: ${loadPercentage}%`}
+                >
+                  {/* Circular Spinner with live percentage inside */}
+                  <div className="relative w-20 h-20 flex items-center justify-center">
+                    <div className="absolute inset-0 rounded-full border-3 border-white/10 border-t-[#ff5a1f] animate-spin" />
+                    <span className="font-mono font-bold text-lg text-white tabular-nums">
+                      {loadPercentage}%
+                    </span>
+                  </div>
+
+                  <div className="flex flex-col items-center gap-2 max-w-xs w-full text-center">
+                    <span className="text-xs sm:text-sm font-sans text-[#a2a09c]">
+                      Loading {project.title} presentation...
+                    </span>
+
+                    {/* Progress Bar with glowing tip */}
+                    <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-[#e04810] to-[#ff5a1f] rounded-full transition-all duration-150 relative"
+                        style={{ width: `${loadPercentage}%` }}
+                      >
+                        <div className="absolute right-0 top-0 bottom-0 w-2 bg-white/80 rounded-full" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               )}
 
@@ -140,7 +192,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 src={project.behanceUrl}
                 title={`${project.title} - Concept Project`}
                 className="w-full h-full border-0"
-                onLoad={() => setIsLoading(false)}
+                onLoad={handleIframeLoad}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
               />

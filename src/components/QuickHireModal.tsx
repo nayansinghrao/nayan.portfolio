@@ -29,6 +29,7 @@ export const QuickHireModal: React.FC<QuickHireModalProps> = ({
     message: '',
   });
   const [honeypot, setHoneypot] = useState('');
+  const [submitProgress, setSubmitProgress] = useState(0);
 
   const [touched, setTouched] = useState<{
     name?: boolean;
@@ -121,9 +122,20 @@ export const QuickHireModal: React.FC<QuickHireModalProps> = ({
     }
 
     setIsSubmitting(true);
+    setSubmitProgress(20);
+    let currentPct = 20;
+    const progressTimer = setInterval(() => {
+      currentPct = Math.min(95, currentPct + 22);
+      setSubmitProgress(currentPct);
+    }, 180);
+
     setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitted(true);
+      clearInterval(progressTimer);
+      setSubmitProgress(100);
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setSubmitted(true);
+      }, 150);
     }, 1000);
   };
 
@@ -402,7 +414,7 @@ export const QuickHireModal: React.FC<QuickHireModalProps> = ({
                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                       />
                     </svg>
-                    <span>Sending Brief...</span>
+                    <span>Sending Brief ({submitProgress}%)...</span>
                   </>
                 ) : (
                   <>
