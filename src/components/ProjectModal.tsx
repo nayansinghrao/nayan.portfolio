@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ProjectItem } from '../data/portfolioData';
+import { useSmoothScroll } from '../context/SmoothScrollContext';
 
 interface ProjectModalProps {
   project: ProjectItem | null;
@@ -13,10 +14,12 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const progressTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const { stopScroll, startScroll } = useSmoothScroll();
 
   useEffect(() => {
     if (!project) return;
 
+    stopScroll();
     setIsLoading(true);
     setLoadPercentage(10);
 
@@ -81,12 +84,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
       clearTimeout(focusTimeout);
       if (progressTimerRef.current) clearInterval(progressTimerRef.current);
       document.body.style.overflow = originalOverflow;
+      startScroll();
       window.removeEventListener('keydown', handleKeyDown);
       if (previouslyFocusedElement) {
         previouslyFocusedElement.focus?.();
       }
     };
-  }, [project, onClose]);
+  }, [project, onClose, stopScroll, startScroll]);
 
   const handleIframeLoad = () => {
     if (progressTimerRef.current) clearInterval(progressTimerRef.current);
@@ -118,6 +122,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         >
           <motion.div
             ref={modalRef}
+            data-lenis-prevent
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}

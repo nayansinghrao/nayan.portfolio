@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
+import { useSmoothScroll } from '../context/SmoothScrollContext';
 import { ThemeToggle } from './ThemeToggle';
 import {
   EMAIL_ADDRESS,
@@ -22,13 +23,14 @@ export const Header: React.FC<HeaderProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>(propActiveSection || 'home');
   const { isDark } = useTheme();
+  const { scrollTo } = useSmoothScroll();
 
   const navItems = [
     { id: 'home', label: 'Home' },
     { id: 'work', label: 'Work' },
-    { id: 'about', label: 'About' },
     { id: 'skills', label: 'Skills' },
     { id: 'experience', label: 'Experience' },
+    { id: 'about', label: 'About' },
     { id: 'contact', label: 'Contact' },
   ];
 
@@ -42,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({
   // Section observer to highlight current in-view section
   useEffect(() => {
     const handleScroll = () => {
-      const sectionIds = ['home', 'work', 'about', 'skills', 'experience', 'contact'];
+      const sectionIds = ['home', 'work', 'skills', 'experience', 'about', 'contact'];
       const scrollPosition = window.scrollY + 140; // sticky header offset
 
       for (let i = sectionIds.length - 1; i >= 0; i--) {
@@ -68,12 +70,9 @@ export const Header: React.FC<HeaderProps> = ({
     if (onNavigateSection) {
       onNavigateSection(id);
     } else {
-      const elem = document.getElementById(id);
-      if (elem) {
-        elem.scrollIntoView({ behavior: 'smooth' });
-        window.history.pushState(null, '', `#${id}`);
-        setActiveSection(id);
-      }
+      scrollTo(id, { offset: -84, duration: 1.35 });
+      window.history.pushState(null, '', `#${id}`);
+      setActiveSection(id);
     }
   };
 

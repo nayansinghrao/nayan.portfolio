@@ -153,7 +153,7 @@ export const UploadPdfModal: React.FC<UploadPdfModalProps> = ({
     : BRANDS.filter((b) => b.id === activeBrandTab);
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/75 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-fadeIn">
+    <div data-lenis-prevent className="fixed inset-0 z-50 overflow-y-auto bg-black/75 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-fadeIn">
       <div
         className="relative w-full max-w-4xl bg-[#fbf9f6] dark:bg-[#121316] rounded-2xl shadow-2xl border border-[#e5e2dc] dark:border-[#26282c] overflow-hidden my-6 flex flex-col max-h-[92vh] transition-colors"
         onClick={(e) => e.stopPropagation()}

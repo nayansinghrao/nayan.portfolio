@@ -22,6 +22,7 @@ import {
 import { FadeInSection } from '../components/FadeInSection';
 import { ContactForm } from '../components/ContactForm';
 import { ProjectModal } from '../components/ProjectModal';
+import { useSmoothScroll } from '../context/SmoothScrollContext';
 
 interface HomeScreenProps {
   onNavigateSection?: (sectionId: string) => void;
@@ -31,6 +32,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigateSection }) => 
   const [copied, setCopied] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('All');
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+  const { scrollTo } = useSmoothScroll();
 
   const filteredProjects: ProjectItem[] =
     selectedCategory === 'All'
@@ -46,11 +48,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigateSection }) => 
     if (onNavigateSection) {
       onNavigateSection(id);
     } else {
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-        window.history.pushState(null, '', `#${id}`);
-      }
+      scrollTo(id, { offset: -84, duration: 1.35 });
+      window.history.pushState(null, '', `#${id}`);
     }
   };
 
@@ -367,74 +366,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigateSection }) => 
       </FadeInSection>
 
       {/* ======================================================== */}
-      {/* 3. About Section (#about) */}
-      {/* ======================================================== */}
-      <FadeInSection>
-        <section
-          id="about"
-          className="max-w-7xl w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-8 sm:py-10 md:py-12 scroll-mt-24"
-        >
-          <div className="flex items-end justify-between pb-4 border-b border-[#e5e2dc]/60 dark:border-[#222428] mb-6 sm:mb-8">
-            <div>
-              <h2 className="font-display text-3xl sm:text-4xl text-[#1b1c1a] dark:text-[#f3f2ee] tracking-tight font-bold transition-colors">
-                About Me
-              </h2>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
-            {/* Bio Card */}
-            <div className="lg:col-span-7 bg-[#f5f3f0] dark:bg-[#16171a] rounded-2xl p-5 sm:p-7 md:p-8 shadow-xs border border-[#e5e2dc] dark:border-[#26282c] transition-colors flex flex-col justify-between">
-              <div>
-                <h3 className="font-display text-xs uppercase tracking-widest text-[#5f6368] dark:text-[#a2a09c] font-bold mb-3">
-                  Bio
-                </h3>
-                <p className="font-sans text-base sm:text-lg text-[#1b1c1a] dark:text-[#f3f2ee] leading-relaxed transition-colors">
-                  {ABOUT_DATA.bio}
-                </p>
-              </div>
-
-              <div className="mt-6 pt-5 border-t border-[#e2dfd8] dark:border-[#27292e] flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm text-[#5f6368] dark:text-[#a2a09c] font-sans">
-                <span className="font-display font-semibold text-[#1b1c1a] dark:text-[#f3f2ee]">
-                  Based in:
-                </span>
-                <span>{ABOUT_DATA.location}</span>
-                <span>•</span>
-                <span className="font-display font-semibold text-[#1b1c1a] dark:text-[#f3f2ee]">
-                  Current workplace:
-                </span>
-                <span>{ABOUT_DATA.currentWorkplace}</span>
-              </div>
-            </div>
-
-            {/* Education Card */}
-            <div className="lg:col-span-5 bg-[#f5f3f0] dark:bg-[#16171a] rounded-2xl p-5 sm:p-7 md:p-8 shadow-xs border border-[#e5e2dc] dark:border-[#26282c] transition-colors">
-              <h3 className="font-display text-xs uppercase tracking-widest text-[#5f6368] dark:text-[#a2a09c] font-bold mb-4">
-                Education
-              </h3>
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-[#eae8e5] dark:bg-[#202226] flex items-center justify-center text-[#111111] dark:text-white shrink-0">
-                  <span className="material-symbols-outlined text-[24px]">school</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-display text-base sm:text-lg font-bold text-[#1b1c1a] dark:text-[#f3f2ee]">
-                    {ABOUT_DATA.education.degree}
-                  </span>
-                  <span className="font-sans text-sm text-[#5f6368] dark:text-[#a2a09c] mt-0.5">
-                    {ABOUT_DATA.education.university}
-                  </span>
-                  <span className="font-display text-xs font-semibold text-[#ff5a1f] mt-2">
-                    {ABOUT_DATA.education.years}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </FadeInSection>
-
-      {/* ======================================================== */}
-      {/* 4. Skills & Tools Section (#skills) */}
+      {/* 3. Skills & Tools Section (#skills) */}
       {/* ======================================================== */}
       <FadeInSection>
         <section
@@ -517,7 +449,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigateSection }) => 
       </FadeInSection>
 
       {/* ======================================================== */}
-      {/* 5. Experience Section (#experience) */}
+      {/* 4. Experience Section (#experience) */}
       {/* ======================================================== */}
       <FadeInSection>
         <section
@@ -559,6 +491,73 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigateSection }) => 
                   )}
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+      </FadeInSection>
+
+      {/* ======================================================== */}
+      {/* 5. About Section (#about) */}
+      {/* ======================================================== */}
+      <FadeInSection>
+        <section
+          id="about"
+          className="max-w-7xl w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-8 sm:py-10 md:py-12 scroll-mt-24"
+        >
+          <div className="flex items-end justify-between pb-4 border-b border-[#e5e2dc]/60 dark:border-[#222428] mb-6 sm:mb-8">
+            <div>
+              <h2 className="font-display text-3xl sm:text-4xl text-[#1b1c1a] dark:text-[#f3f2ee] tracking-tight font-bold transition-colors">
+                About Me
+              </h2>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
+            {/* Bio Card */}
+            <div className="lg:col-span-7 bg-[#f5f3f0] dark:bg-[#16171a] rounded-2xl p-5 sm:p-7 md:p-8 shadow-xs border border-[#e5e2dc] dark:border-[#26282c] transition-colors flex flex-col justify-between">
+              <div>
+                <h3 className="font-display text-xs uppercase tracking-widest text-[#5f6368] dark:text-[#a2a09c] font-bold mb-3">
+                  Bio
+                </h3>
+                <p className="font-sans text-base sm:text-lg text-[#1b1c1a] dark:text-[#f3f2ee] leading-relaxed transition-colors">
+                  {ABOUT_DATA.bio}
+                </p>
+              </div>
+
+              <div className="mt-6 pt-5 border-t border-[#e2dfd8] dark:border-[#27292e] flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm text-[#5f6368] dark:text-[#a2a09c] font-sans">
+                <span className="font-display font-semibold text-[#1b1c1a] dark:text-[#f3f2ee]">
+                  Based in:
+                </span>
+                <span>{ABOUT_DATA.location}</span>
+                <span>•</span>
+                <span className="font-display font-semibold text-[#1b1c1a] dark:text-[#f3f2ee]">
+                  Current workplace:
+                </span>
+                <span>{ABOUT_DATA.currentWorkplace}</span>
+              </div>
+            </div>
+
+            {/* Education Card */}
+            <div className="lg:col-span-5 bg-[#f5f3f0] dark:bg-[#16171a] rounded-2xl p-5 sm:p-7 md:p-8 shadow-xs border border-[#e5e2dc] dark:border-[#26282c] transition-colors">
+              <h3 className="font-display text-xs uppercase tracking-widest text-[#5f6368] dark:text-[#a2a09c] font-bold mb-4">
+                Education
+              </h3>
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-[#eae8e5] dark:bg-[#202226] flex items-center justify-center text-[#111111] dark:text-white shrink-0">
+                  <span className="material-symbols-outlined text-[24px]">school</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-display text-base sm:text-lg font-bold text-[#1b1c1a] dark:text-[#f3f2ee]">
+                    {ABOUT_DATA.education.degree}
+                  </span>
+                  <span className="font-sans text-sm text-[#5f6368] dark:text-[#a2a09c] mt-0.5">
+                    {ABOUT_DATA.education.university}
+                  </span>
+                  <span className="font-display text-xs font-semibold text-[#ff5a1f] mt-2">
+                    {ABOUT_DATA.education.years}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </section>

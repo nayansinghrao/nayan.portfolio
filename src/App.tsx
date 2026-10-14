@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { SmoothScrollProvider, useSmoothScroll } from './context/SmoothScrollContext';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { BackToTop } from './components/BackToTop';
@@ -7,8 +8,9 @@ import { PageLoader } from './components/PageLoader';
 import { HomeScreen } from './screens/HomeScreen';
 import { PortfolioPdfView } from './screens/PortfolioPdfView';
 
-export default function App() {
+function PortfolioMain() {
   const [currentTab, setCurrentTab] = useState<string>('home');
+  const { scrollTo } = useSmoothScroll();
 
   // Enforce browser tab title in every file / state
   useEffect(() => {
@@ -32,35 +34,28 @@ export default function App() {
 
       setCurrentTab('home');
 
-      if (['home', 'work', 'about', 'skills', 'experience', 'contact'].includes(hash)) {
+      if (['home', 'work', 'skills', 'experience', 'about', 'contact'].includes(hash)) {
         setTimeout(() => {
-          const element = document.getElementById(hash);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-          }
-        }, 100);
+          scrollTo(hash, { offset: -84, duration: 1.35 });
+        }, 120);
       }
     };
 
     handleLocationChange();
     window.addEventListener('hashchange', handleLocationChange);
     return () => window.removeEventListener('hashchange', handleLocationChange);
-  }, []);
+  }, [scrollTo]);
 
   const handleNavigateSection = (sectionId: string) => {
     if (currentTab === 'pdf') {
       setCurrentTab('home');
       setTimeout(() => {
-        const elem = document.getElementById(sectionId);
-        if (elem) elem.scrollIntoView({ behavior: 'smooth' });
+        scrollTo(sectionId, { offset: -84, duration: 1.35 });
         window.history.pushState(null, '', `#${sectionId}`);
       }, 100);
     } else {
-      const elem = document.getElementById(sectionId);
-      if (elem) {
-        elem.scrollIntoView({ behavior: 'smooth' });
-        window.history.pushState(null, '', `#${sectionId}`);
-      }
+      scrollTo(sectionId, { offset: -84, duration: 1.35 });
+      window.history.pushState(null, '', `#${sectionId}`);
     }
   };
 
@@ -80,7 +75,7 @@ export default function App() {
       {/* Top Fixed Header with 6 section anchors, in-view highlighting, and mobile drawer */}
       <Header onNavigateSection={handleNavigateSection} />
 
-      {/* Main Single-Page Content with #home, #work, #about, #skills, #experience, #contact */}
+      {/* Main Single-Page Content with #home, #work, #skills, #experience, #about, #contact */}
       <main className="flex-1 w-full pt-20 flex flex-col items-center">
         <HomeScreen onNavigateSection={handleNavigateSection} />
       </main>
@@ -91,5 +86,13 @@ export default function App() {
       {/* Floating Back-to-Top Button */}
       <BackToTop />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <SmoothScrollProvider>
+      <PortfolioMain />
+    </SmoothScrollProvider>
   );
 }

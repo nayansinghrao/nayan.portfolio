@@ -159,7 +159,7 @@ export const QuickHireModal: React.FC<QuickHireModalProps> = ({
   const messageHasError = Boolean((touched.message || submitAttempted) && errors.message);
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div data-lenis-prevent className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
       <div 
         className="relative w-full max-w-lg bg-[#fbf9f6] dark:bg-[#141517] rounded-2xl shadow-2xl border border-[#e5e2dc] dark:border-[#26282c] p-6 sm:p-8 animate-fadeIn transition-colors"
         onClick={(e) => e.stopPropagation()}

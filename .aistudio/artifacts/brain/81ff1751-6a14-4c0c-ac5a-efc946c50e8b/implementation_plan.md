@@ -1,141 +1,78 @@
-# Portfolio Content & Data Customization Plan
+# Implementation Plan: Ultra-Fluid Inertia Smooth Scroll & Section Rearrangement
 
-Structured roadmap and fill-in-the-blank content template to replace all placeholder portfolio data with your verified personal information, brand copy, and professional milestones across the site and PDF exports.
-
-## User Review & Critical Decisions
-
-> [!IMPORTANT]
-> Based on your responses, we are updating **all default content at once**, retaining the three flagship concept brand frameworks (**Cocona**, **Seth Dhanraj**, and **Sharpix**) while customizing their descriptive copy, and providing a clean **fill-in-the-blank template** for you to provide your information.
->
-> Below is the exact data blueprint. Review the plan and fill out the template fields below when approving or in your next response.
-
-- **Confirmed Scope**: Comprehensive single-turn update of personal details, contact endpoints, concept brand copy, case studies, career trajectory, and tool ecosystems.
-- **Brand Strategy**: Retain Cocona, Seth Dhanraj, and Sharpix frameworks, keeping their PDF deck infrastructure intact while updating client briefs, metrics, and narrative copy.
-- **Workflow Format**: Fill-in-the-blank template provided directly in this plan.
+## User Decision Summary
+Based on the clarifying questions answered by the user:
+- **Scrolling Experience**: Inertia momentum smooth scroll (`lenis`) for an ultra-fluid luxury agency feel.
+- **Section Sequence**: Highlight skills earlier: **Hero → Work → Skills → Experience → About → Contact**.
 
 ---
 
-## 1. Overview & Core Concept
+## 1. Architecture & Dependency Strategy
 
-- **What It Does**: Replaces all hardcoded placeholder data in `src/data/portfolioData.ts`, `src/data/brandSlideDecks.ts`, and component labels with your actual professional details, live contact links, custom case study copy, and career achievements.
-- **Target Audience**: Prospective clients, design agencies, creative directors, and founders seeking brand identity, motion design, and generative AI production services.
-- **Key Value**: Instantly transforms the portfolio into an authentic, production-ready showcase representing your real identity, experience, and contact channels.
+### A. Inertia Smooth Scroll Engine (`lenis`)
+- Install `lenis` (`npm i lenis`) for hardware-accelerated momentum scrolling with natural inertia, friction curves, and buttery physics.
+- Mount Lenis in a top-level hook / provider (`src/hooks/useLenisScroll.ts` or `src/components/SmoothScrollProvider.tsx`) running on `requestAnimationFrame`.
+- Configure inertia parameters:
+  - `duration: 1.2`s
+  - Easing: exponential decay `(t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))`
+  - `smoothWheel: true`, `wheelMultiplier: 1.05`, `touchMultiplier: 1.5`
+- Provide programmatic anchor scroll handling (`lenis.scrollTo('#skills', { offset: -88, duration: 1.3 })`) so clicking any header nav item or CTA produces a silky glide with zero sudden jumps.
 
----
-
-## 2. Fill-in-the-Blank Content Template
-
-You can copy this section, fill in your details, and reply with it:
-
-```markdown
-### SECTION A: PERSONAL & CONTACT INFORMATION
-1. Full Name: [e.g., Nayan Singh Rao]
-2. Professional Title / Headline: [e.g., Brand & Motion Designer • Creative AI Director]
-3. Hero Hook Statement: [e.g., Designing high-impact visual identities, kinetic motion reels, and generative AI commercial pipelines for visionary brands.]
-4. Primary Email: [e.g., nayan02062004@gmail.com]
-5. Phone / WhatsApp (with country code): [e.g., +91 98765 43210]
-6. Location & Timezone: [e.g., Rajasthan, India (IST UTC+5:30)]
-7. Availability Status Pill: [e.g., Available for work • Q3/Q4 2025 • 2 Slots Open]
-8. Social & Portfolio URLs:
-   - LinkedIn: [https://linkedin.com/in/...]
-   - Behance / Dribbble: [https://behance.net/...]
-   - Instagram / X (Optional): [...]
-
-### SECTION B: ABOUT ME & PHILOSOPHY
-1. Bio Paragraph: [2-3 sentences about your creative background, trajectory, and passion]
-2. Core Creative Pillars (3 Pillars):
-   - Pillar 1 Title & Description: [e.g., Tactile Craftsmanship — Physical dielines and bespoke finishes]
-   - Pillar 2 Title & Description: [e.g., Algorithmic Velocity — Generative AI diffusion pipelines]
-   - Pillar 3 Title & Description: [e.g., Commercial Impact — Brand systems engineered for conversion]
-3. Education / Degree: [e.g., Bachelor of Design, Visual Communication / Self-taught / Institute name]
-
-### SECTION C: THE 3 CONCEPT BRANDS (TEXT COPY CUSTOMIZATION)
-1. Brand 1: COCONA (Organic Brews & Packaging)
-   - Updated Subtitle / Tagline: [e.g., Regenerative coconut cold-brew beverages & bio-packaging]
-   - Client Brief / Core Story: [Brief 1-2 sentence description]
-   - Key Metric / Highlight: [e.g., 200k+ Units Distributed in Launch Quarter]
-
-2. Brand 2: SETH DHANRAJ (Heritage Luxury Jewelry)
-   - Updated Subtitle / Tagline: [e.g., Royal Marwari goldsmith heritage & bespoke velvet packaging]
-   - Client Brief / Core Story: [Brief 1-2 sentence description]
-   - Key Metric / Highlight: [e.g., Featured in Luxury Connoisseur Archive]
-
-3. Brand 3: SHARPIX (Precision Grooming & Hardware)
-   - Updated Subtitle / Tagline: [e.g., Aerospace-grade titanium grooming instruments]
-   - Client Brief / Core Story: [Brief 1-2 sentence description]
-   - Key Metric / Highlight: [e.g., 4.9★ Average Rating Across 14,000 Reviews]
-
-### SECTION D: CAREER TIMELINE & WORK EXPERIENCE
-(List up to 3-4 roles/milestones)
-Role 1:
-- Period: [e.g., 2023 – Present]
-- Position & Company: [e.g., Senior Brand Designer @ Studio XYZ / Freelance]
-- Location & Type: [e.g., Remote / On-site • Full-time / Retainer]
-- Key Highlights (2-3 bullets): [Impact bullets]
-
-Role 2:
-- Period: [e.g., 2021 – 2023]
-- Position & Company: [e.g., Motion & Visual Designer @ Agency ABC]
-- Key Highlights (2-3 bullets): [Impact bullets]
-
-### SECTION E: TOOLS & SKILLS MATRIX
-1. Primary Software Tools: [e.g., Figma, After Effects, Cinema 4D, Illustrator, Photoshop, Blender]
-2. Generative AI Tools: [e.g., Midjourney v6, Runway Gen-3, ComfyUI, ElevenLabs]
-3. Core Disciplines: [e.g., Brand Identity, Motion Design, Packaging Dielines, 3D Rendering, Social Reels]
-```
+### B. Scroll Lock Coordination
+- Coordinate with `ProjectModal`, `QuickHireModal`, and `UploadPdfModal`:
+  - When any modal opens, call `lenis.stop()` so background inertia ceases completely.
+  - When the modal closes, call `lenis.start()` to seamlessly restore buttery viewport momentum.
 
 ---
 
-## 3. Technical Architecture & Data Strategy
+## 2. Visual Architecture & Layout Rearrangement
 
-```
-┌────────────────────────────────────────────────────────┐
-│               Data Architecture & Stores               │
-└────────────────────────────────────────────────────────┘
-                           │
-         ┌─────────────────┴─────────────────┐
-         ▼                                   ▼
-┌───────────────────────────┐     ┌──────────────────────────┐
-│ src/data/portfolioData.ts │     │ src/data/brandSlideDecks │
-│ - PERSONAL_INFO           │     │ - Slide headers & copy   │
-│ - FEATURED_PROJECTS       │     │ - Slide bullet points    │
-│ - CONCEPT_BRANDS_DEEPDIVE │     │ - Dieline spec text      │
-│ - EXPERIENCE_ITEMS        │     └──────────────────────────┘
-│ - TOOL_ECOSYSTEM          │
-└───────────────────────────┘
-         │
-         ├───────────────────────────────────┐
-         ▼                                   ▼
-┌───────────────────────────┐     ┌──────────────────────────┐
-│ Active Screens & Modals   │     │ Static PDF Generation    │
-│ - HomeScreen (Hero/Dock)  │     │ - PortfolioPdfView.tsx   │
-│ - WorkScreen (Dossiers)   │     │ - BrandDeckViewer.tsx    │
-│ - AboutScreen (Bio/Pillar)│     │ - Print & Export modes   │
-│ - ExperienceScreen        │     └──────────────────────────┘
-│ - ContactScreen (Form)    │
-│ - QuickHireModal          │
-└───────────────────────────┘
-```
+The page flow will be restructured in `src/screens/HomeScreen.tsx` and mirrored in navigation items:
 
-### Affected Files and Update Pipeline
-
-1. **`src/data/portfolioData.ts`**:
-   - Update constants `FEATURED_PROJECTS`, `CONCEPT_BRANDS_DEEPDIVE`, `EXPERIENCE_ITEMS`, `TOOL_ECOSYSTEM`.
-   - Export structured `PROFILE_DATA` (name, email, phone, location, status, social links) to centralize personal attributes.
-2. **`src/screens/ContactScreen.tsx` & `src/components/QuickHireModal.tsx`**:
-   - Link phone numbers and WhatsApp URLs to your provided number (`wa.me/<your-number>`).
-   - Link email links and default form mailto addresses to your verified email.
-   - Synchronize studio location and timezone clocks.
-3. **`src/components/Header.tsx` & `src/components/Footer.tsx`**:
-   - Update brand wordmark, initials logo, title, and social outbound links.
-4. **`src/screens/PortfolioPdfView.tsx`**:
-   - Synchronize PDF header and footer metadata with your name and credentials for press-ready export.
+1. **Hero Section (`#home`)**:
+   - High-impact designer typography, verified credentials, and quick action buttons ("Explore Work", "Direct Inquiry").
+2. **Featured Work & Concept Brands (`#work`)**:
+   - Filterable showcase cards (Cocona, Seth Dhanraj, Sharpix) with subtle scale-up hover physics and full-screen modal project views.
+3. **Core Skills & Technical Mastery (`#skills`)** *(Moved up)*:
+   - Visual identity, packaging, AI tool ecosystem (Photoshop, Illustrator, InDesign, Midjourney, Figma, Runway, Premiere Pro).
+   - Direct proof of capability placed immediately adjacent to the work samples.
+4. **Professional Experience & Timeline (`#experience`)** *(Moved up)*:
+   - Career timeline at Jundalo Technologies, verified client deliverables, and design metrics.
+5. **About Me & Design Philosophy (`#about`)** *(Placed after experience)*:
+   - Personal monograph, design approach, education, and verified resume download.
+6. **Contact & Project Planner (`#contact`)**:
+   - Direct validated contact form with honeypot spam protection and live percentage submission progress.
 
 ---
 
-## 4. Verification & Testing Protocol
+## 3. Header & Navigation Synchronization
 
-- **Data Integrity**: Verify that no placeholder emails (`hello@nayansinghrao.design`) or dummy phone numbers remain across any UI or modal.
-- **Link Accuracy**: Validate that WhatsApp deep links (`https://wa.me/...`) and mailto links format phone numbers and emails correctly.
-- **Theme & Dark Mode Preservation**: Ensure newly inserted text copy maintains high-contrast light and dark styling across all screens.
-- **Compilation Check**: Run `compile_applet` and `lint_applet` to confirm strict TypeScript typing and zero compile errors.
+### A. Top Navigation Bar (`src/components/Header.tsx`)
+- Update `navItems` array to match the new sequence:
+  `['home', 'work', 'skills', 'experience', 'about', 'contact']`.
+- Update the Intersection Observer / scroll spy logic in `Header.tsx` to track the new section order and accurately highlight active tabs with zero lag.
+- Update smooth scroll click handlers to dispatch through `lenis.scrollTo()` for unified acceleration curves.
+
+### B. Footer & Floating Controls
+- Update section anchor links in `Footer.tsx` and `BackToTop.tsx` to glide to top via `lenis.scrollTo(0, { duration: 1.5 })`.
+
+---
+
+## 4. Anti-Slop & Visual Refinements
+
+- Retain clean unboxed text metadata with typographic dot separators (`·`).
+- Ensure consistent section top and bottom spacing (`py-12 md:py-16`) across all rearranged sections.
+- Polish section transition dividers with subtle hairline borders (`border-b border-[#e5e2dc]/60 dark:border-[#222428]`).
+
+---
+
+## 5. Verification Plan
+
+1. **Build & Lint Verification**:
+   - Run `lint_applet` and `compile_applet` to confirm 100% clean TypeScript build without errors.
+2. **Scroll Physics Verification**:
+   - Test mouse wheel, trackpad, and drag scrolling to ensure ultra-smooth inertia with zero stutter.
+   - Verify anchor navigation clicks (Home, Work, Skills, Experience, About, Contact) glide smoothly with correct sticky header offset (-88px).
+3. **Modal & Preloader Interaction**:
+   - Open and close Concept Project modal to verify background scroll stops and resumes without jumps.
+   - Verify BackToTop button glides to top smoothly.
