@@ -146,6 +146,8 @@ export const CONCEPT_BRANDS: ProjectItem[] = [
     indexNumber: '01 / 03',
     category: 'Branding & Packaging',
     categories: ['Branding', 'Packaging'],
+    image: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=1200&q=80',
+    imageAlt: 'Cocona - Premium coconut water brand packaging design and natural beverage identity',
   },
   {
     id: 'seth-dhanraj',
@@ -157,6 +159,8 @@ export const CONCEPT_BRANDS: ProjectItem[] = [
     indexNumber: '02 / 03',
     category: 'Branding',
     categories: ['Branding'],
+    image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1200&q=80',
+    imageAlt: 'Seth Dhanraj - Luxury haute joaillerie gold jewellery craftsmanship and brand identity',
   },
   {
     id: 'sharpix',
@@ -168,6 +172,8 @@ export const CONCEPT_BRANDS: ProjectItem[] = [
     indexNumber: '03 / 03',
     category: 'Branding & Packaging',
     categories: ['Branding', 'Packaging'],
+    image: 'https://images.unsplash.com/photo-1621607512214-68297480165e?auto=format&fit=crop&w=1200&q=80',
+    imageAlt: 'Sharpix - Precision grooming technology branding and industrial design identity',
   },
 ];
 

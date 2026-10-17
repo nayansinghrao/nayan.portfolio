@@ -22,6 +22,7 @@ import {
 import { FadeInSection } from '../components/FadeInSection';
 import { ContactForm } from '../components/ContactForm';
 import { ProjectModal } from '../components/ProjectModal';
+import { ParallaxWorkImage } from '../components/ParallaxWorkImage';
 import { useSmoothScroll } from '../context/SmoothScrollContext';
 
 interface HomeScreenProps {
@@ -285,38 +286,16 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigateSection }) => 
                         }}
                         className="bg-[#fbf9f6] dark:bg-[#1d1f23] rounded-2xl overflow-hidden border border-[#e5e2dc] dark:border-[#2b2e34] shadow-xs hover:shadow-xl hover:border-[#ff5a1f]/40 dark:hover:border-[#ff5a1f]/40 transition-all duration-300 flex flex-col justify-between group cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-[#ff5a1f]"
                       >
-                        {/* Clean Neutral Cover Placeholder */}
-                        <div className="relative w-full aspect-[16/10] bg-[#e8e6e1] dark:bg-[#23252a] flex flex-col items-center justify-center p-6 border-b border-[#e5e2dc] dark:border-[#2b2e34] overflow-hidden select-none">
-                          <div className="absolute inset-0 opacity-40 bg-[radial-gradient(#c8c5bd_1px,transparent_1px)] dark:bg-[radial-gradient(#3a3d45_1px,transparent_1px)] [background-size:16px_16px]"></div>
-
-                          <div className="relative z-10 flex flex-col items-center text-center gap-2">
-                            <div className="w-14 h-14 rounded-2xl bg-white/70 dark:bg-[#18191c]/80 backdrop-blur-xs border border-[#dad6ce] dark:border-[#353840] flex items-center justify-center text-[#5f6368] dark:text-[#a2a09c] font-display font-bold text-lg tracking-wider shadow-2xs group-hover:scale-105 transition-transform duration-300">
-                              {brand.title.substring(0, 2).toUpperCase()}
-                            </div>
-                            <span className="font-display text-xs tracking-widest uppercase font-semibold text-[#75777a] dark:text-[#8e9198]">
-                              {brand.title}
-                            </span>
-                          </div>
-
-                          {/* Corner Badges: Project Tag + Categories */}
-                          <div className="absolute top-3.5 left-3.5 flex flex-wrap gap-1.5 max-w-[80%]">
-                            <span className="px-3 py-1 rounded-full bg-white/90 dark:bg-[#141518]/90 backdrop-blur-md text-[11px] font-display font-semibold text-[#1b1c1a] dark:text-[#f3f2ee] border border-[#dad6ce]/70 dark:border-[#353840] shadow-2xs">
-                              {brand.tag}
-                            </span>
-                            {brand.categories?.map((cat: string) => (
-                              <span
-                                key={cat}
-                                className="px-2.5 py-1 rounded-full bg-white/85 dark:bg-[#141518]/85 backdrop-blur-md text-[10px] font-display font-semibold text-[#ff5a1f] border border-[#dad6ce]/70 dark:border-[#353840] shadow-2xs"
-                              >
-                                {cat}
-                              </span>
-                            ))}
-                          </div>
-
-                          <div className="absolute bottom-3 right-3 text-[11px] font-mono font-medium text-[#8f9196] dark:text-[#6e7178]">
-                            0{idx + 1}
-                          </div>
-                        </div>
+                        {/* Parallax Card Visual Cover */}
+                        <ParallaxWorkImage
+                          src={brand.image}
+                          alt={brand.imageAlt || `${brand.title} visual showcase`}
+                          title={brand.title}
+                          tag={brand.tag}
+                          badge={brand.badge}
+                          categories={brand.categories}
+                          indexText={`0${idx + 1}`}
+                        />
 
                         {/* Card Content & Action Button */}
                         <div className="p-6 flex flex-col flex-1 justify-between gap-5">
